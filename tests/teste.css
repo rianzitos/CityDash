@@ -1,0 +1,138 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+    max-width: 480px;
+    margin: 40px auto;
+    padding: 0 16px;
+    background: #0f172a;
+    color: #f1f5f9;
+}
+
+h1 {
+    font-size: 1.4rem;
+    margin-bottom: 4px;
+}
+
+p.subtitle {
+    color: #94a3b8;
+    margin-top: 0;
+    font-size: 0.9rem;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    margin-top: 20px;
+}
+
+.row {
+    display: flex;
+    gap: 8px;
+    margin-bottom: 10px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #334155;
+    background: #0f172a;
+    color: #f1f5f9;
+    font-size: 0.95rem;
+}
+
+button {
+    padding: 10px 14px;
+    border-radius: 8px;
+    border: none;
+    background: #3b82f6;
+    color: white;
+    font-weight: 600;
+    cursor: pointer;
+    font-size: 0.9rem;
+    white-space: nowrap;
+}
+
+button:hover {
+    background: #2563eb;
+}
+
+button.secondary {
+    background: #334155;
+}
+
+button.secondary:hover {
+    background: #475569;
+}
+
+#resultados-cidade {
+    margin-top: 6px;
+}
+
+.cidade-opcao {
+    padding: 8px 10px;
+    background: #0f172a;
+    border-radius: 6px;
+    margin-bottom: 4px;
+    cursor: pointer;
+    font-size: 0.85rem;
+}
+
+.cidade-opcao:hover {
+    background: #334155;
+}
+
+#clima {
+    margin-top: 16px;
+}
+
+.clima-temp {
+    font-size: 2.5rem;
+    font-weight: 700;
+    margin: 8px 0 0;
+}
+
+.clima-local {
+    color: #94a3b8;
+    font-size: 0.95rem;
+}
+
+.clima-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 16px;
+}
+
+.clima-item {
+    background: #0f172a;
+    border-radius: 8px;
+    padding: 10px 12px;
+}
+
+.clima-item .label {
+    color: #94a3b8;
+    font-size: 0.75rem;
+}
+
+.clima-item .valor {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-top: 2px;
+}
+
+.erro {
+    color: #f87171;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}
+
+.loading {
+    color: #60a5fa;
+    font-size: 0.9rem;
+    margin-top: 10px;
+}

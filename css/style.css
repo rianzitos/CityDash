@@ -1,0 +1,352 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html,
+body {
+    height: 100%;
+    overflow-x: hidden;
+    /* impede a barra de rolagem horizontal que apareceu */
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #0b0d1a;
+    color: #e2e4f0;
+}
+
+.app {
+    display: flex;
+    min-height: 100vh;
+}
+
+/* ===== SIDEBAR ===== */
+.barraLateral {
+    background-color: #0f1225;
+    width: 13vw;
+    min-width: 220px;
+    flex-shrink: 0;
+    /* nunca deixa a sidebar espremer */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    overflow: hidden;
+}
+
+.containerLogo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem 0 1.5rem;
+}
+
+.logo {
+    width: 13rem;
+    /* reduzido — 13rem tava grande pra uma sidebar de 220px */
+    /* max-width: 80%; */
+    height: auto;
+    object-fit: contain;
+}
+
+#mensagemLogo {
+    color: #8b8fa3;
+    text-align: center;
+    font-size: 0.85rem;
+    font-weight: bold;
+    padding: 0 1rem;
+}
+
+.menu ul {
+    list-style: none;
+    width: 100%;
+    padding: 0 0.9rem;
+}
+
+.menu .itemMenu {
+    margin-bottom: 0.6rem;
+}
+
+.menu .itemMenu a {
+    display: flex;
+    align-items: center;
+    gap: 0.7rem;
+    padding: 0.7rem 1rem;
+    border-radius: 8px;
+    color: #c4c7d6;
+    text-decoration: none;
+    font-size: 0.95rem;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+.menu .itemMenu a i {
+    font-size: 1rem;
+    color: #8b8fa3;
+}
+
+.menu .itemMenu a:hover {
+    background-color: rgba(255, 255, 255, 0.06);
+    color: #fff;
+}
+
+.menu .itemMenu.ativo a {
+    background-color: #ffffff14;
+    color: #fff;
+}
+
+.menu .itemMenu.ativo a i {
+    color: #f5c94b;
+}
+
+.miniClima {
+    margin: 0;
+    padding: 1rem;
+    background-color: #151833;
+    border-radius: 10px;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+    font-size: 0.85rem;
+}
+
+.miniInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.4rem;
+    font-weight: bold;
+}
+
+.miniDesc {
+    color: #8b8fa3;
+    font-size: 0.75rem;
+}
+
+/* ===== ÁREA PRINCIPAL ===== */
+.areaPrincipal {
+    flex: 1;
+    min-width: 0;
+    /* essencial: sem isso, flex-child com conteúdo largo empurra tudo e causa overflow */
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    overflow-y: auto;
+}
+
+/* === HEADER === */
+.cabecalho {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+    gap: 1rem;
+}
+
+.containerPesquisa {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    max-width: 45rem;
+}
+
+.barraPesquisa {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: 1px solid #2a2e45;
+    background-color: #151833;
+    color: #fff;
+    font-size: 0.9rem;
+}
+
+.butLocalizacao {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #1c2040;
+    color: #c4c7d6;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+}
+
+.botoes {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-shrink: 0;
+}
+
+.botoes button {
+    background: none;
+    border: none;
+    color: #c4c7d6;
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
+.butUsuario {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #fff;
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+.avatar {
+    background-color: #f5c94b;
+    color: #0f1225;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+
+/* ===== CONTEÚDO (2 colunas) ===== */
+.conteudo {
+    display: flex;
+    gap: 1.5rem;
+    padding: 0 1.5rem 1.5rem;
+    flex: 1;
+    min-width: 0;
+}
+
+.colunaPrincipal {
+    flex: 3;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.colunaDireita {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.banner h1 {
+    font-size: 1.6rem;
+}
+
+.banner p {
+    color: #8b8fa3;
+    font-size: 0.9rem;
+}
+
+.cardsInfo {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.cardsInfo .card {
+    height: 26.8vh;
+}
+
+.card {
+    flex: 1;
+    background-color: #151833;
+    border-radius: 12px;
+    padding: 1rem;
+}
+
+.anotacoesInput {
+    display: flex;
+    gap: 0.75rem;
+    margin-bottom: 1rem;
+}
+
+.anotacoesInput input {
+    flex: 1;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #0f1225;
+    color: #fff;
+}
+
+.anotacoesInput button {
+    padding: 0.6rem 1.2rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #3b82f6;
+    color: #fff;
+    cursor: pointer;
+}
+
+
+
+.anotacoesColunas {
+    display: flex;
+    gap: 1rem;
+}
+
+.colunaPendentes,
+.colunaConcluidas {
+    flex: 1;
+    background-color: #0f1225;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+.anotacoes {
+    flex: 0 0 auto;      /* impede que ele cresça e ocupe o resto do espaço */
+    height: 50vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.anotacoesColunas {
+    flex: 1;             /* ocupa o que sobrar dentro do card, depois do input */
+    min-height: 0;       /* sem isso o overflow abaixo não funciona */
+}
+
+.colunaPendentes,
+.colunaConcluidas {
+    flex: 1;
+    height: 100%;
+    min-height: 0;
+    overflow-y: auto;    /* rola dentro da coluna se a lista crescer */
+    background-color: #0f1225;
+    border-radius: 8px;
+    padding: 0.75rem;
+}
+
+.linhaInferior {
+    display: flex;
+    gap: 1.5rem;
+}
+
+.linhaInferior .card {
+    min-height: 150px;
+}
+
+.noticias {
+    height: 20vh;
+}
+
+.colunaDireita .noticias {
+    flex: 2.5;    /* maior */
+}
+
+.colunaDireita .previsao {
+    flex: 1.5;    /* médio */
+}
+
+.colunaDireita .dica {
+    flex: 0.8;      /* menor */
+}
