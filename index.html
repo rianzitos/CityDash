@@ -48,10 +48,18 @@
         <header class="cabecalho">
             <div class="containerPesquisa">
                 <input id="input-cidade" class="barraPesquisa" type="text" placeholder="Digite uma cidade...">
-                <button class="butLocalizacao">
+                <button class="butBuscar">
+                    <i class="bi bi-search"></i> Buscar
+                </button>
+                <button class="butLocalizacao" onclick="usarLocalizacaoAtual()">
                     <i class="bi bi-cursor-fill"></i> Usar minha localização
                 </button>
+
+                <div id="resultados-cidade" class="resultadosCidade"></div>
             </div>
+
+            <!-- NOVO: elemento que o setStatus() precisa pra mostrar "Carregando..." / erros -->
+            <div id="status"></div>
 
             <div class="botoes">
                 <button class="butNoturno"><i class="bi bi-moon-fill"></i></button>
@@ -70,7 +78,9 @@
                 </section>
 
                 <section class="cardsInfo">
-                    <div class="card cardClima">...</div>
+                    <div class="card cardClima">
+                    </div>
+
                     <div class="card cardHorario">...</div>
                     <div class="card cardLocalizacao">...</div>
                 </section>
@@ -86,7 +96,7 @@
                     </div>
                 </section>
 
-    
+
 
             </main>
 

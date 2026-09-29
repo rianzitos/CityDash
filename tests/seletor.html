@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seletor Suspendo do Topo</title>
+    <style>
+        /* Configurações básicas da página */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #f4f4f9;
+        }
+
+        /* Botão que ativa o seletor */
+        .btn-toggle {
+            padding: 12px 24px;
+            font-size: 16px;
+            cursor: pointer;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            z-index: 10;
+        }
+
+        /* Container que surge do topo */
+        .top-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            box-sizing: border-box;
+            
+            /* Começa escondido acima da tela */
+            transform: translateY(-100%);
+            /* Transição suave para a animação */
+            transition: transform 0.4s ease-in-out;
+            z-index: 100;
+        }
+
+        /* Classe que ativa a animação e mostra o container */
+        .top-container.active {
+            transform: translateY(0);
+        }
+
+        /* Conteúdo interno do seletor */
+        .seletor-content {
+            max-width: 600px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-close {
+            background: none;
+            border: none;
+            font-size: 20px;
+            cursor: pointer;
+            color: #ff4d4d;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Botão de Gatilho -->
+    <button class="btn-toggle" id="openBtn">Abrir Seletor</button>
+
+    <!-- Container do Topo -->
+    <div class="top-container" id="topSelector">
+        <div class="seletor-content">
+            <div>
+                <h3>Selecione uma opção:</h3>
+                <select>
+                    <option>Opção 1</option>
+                    <option>Opção 2</option>
+                    <option>Opção 3</option>
+                </select>
+            </div>
+            <button class="btn-close" id="closeBtn">&times; Fechar</button>
+        </div>
+    </div>
+
+    <!-- JavaScript para controle -->
+    <script>
+        const openBtn = document.getElementById('openBtn');
+        const closeBtn = document.getElementById('closeBtn');
+        const topSelector = document.getElementById('topSelector');
+
+        // Abre o container ao clicar no botão principal
+        openBtn.addEventListener('click', () => {
+            topSelector.classList.add('active');
+        });
+
+        // Fecha o container ao clicar no botão fechar
+        closeBtn.addEventListener('click', () => {
+            topSelector.classList.remove('active');
+        });
+
+        // Fecha se o usuário clicar fora do conteúdo (opcional)
+        window.addEventListener('click', (e) => {
+            if (e.target === topSelector) {
+                topSelector.classList.remove('active');
+            }
+        });
+    </script>
+
+</body>
+</html>

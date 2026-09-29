@@ -145,14 +145,6 @@ body {
     gap: 1rem;
 }
 
-.containerPesquisa {
-    display: flex;
-    align-items: center;
-    gap: 0.75rem;
-    flex: 1;
-    max-width: 45rem;
-}
-
 .barraPesquisa {
     flex: 1;
     padding: 0.6rem 1rem;
@@ -175,6 +167,78 @@ body {
     font-size: 0.85rem;
     white-space: nowrap;
     cursor: pointer;
+}
+
+.butBuscar {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    border: none;
+    background-color: #3b82f6;
+    color: #e2e4f0;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.5s ease;
+}
+
+.butBuscar:hover {
+    transition: 0.5s ease;
+    background-color: #0d4fb9;
+}
+
+.containerPesquisa {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    flex: 1;
+    max-width: 45rem;
+    position: relative;
+    /* ESSENCIAL: ancora o dropdown absoluto */
+}
+
+.resultadosCidade {
+    display: none;
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    left: 0;
+    width: 100%;
+    max-width: 500px;
+    /* acompanha a largura do input, não os botões */
+    background-color: #151833;
+    border: 1px solid #2a2e45;
+    border-radius: 8px;
+    padding: 0.5rem;
+    z-index: 100;
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+.resultadosCidade.ativo {
+    display: block;
+}
+
+.itemResultado {
+    padding: 0.6rem 0.8rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    color: #e2e4f0;
+    transition: background-color 0.15s;
+}
+
+.itemResultado:hover {
+    background-color: #1c2040;
+}
+
+.resultadosCidade .erro,
+.resultadosCidade .carregando {
+    padding: 0.6rem 0.8rem;
+    font-size: 0.85rem;
+    color: #8b8fa3;
 }
 
 .botoes {
@@ -304,15 +368,18 @@ body {
 }
 
 .anotacoes {
-    flex: 0 0 auto;      /* impede que ele cresça e ocupe o resto do espaço */
+    flex: 0 0 auto;
+    /* impede que ele cresça e ocupe o resto do espaço */
     height: 50vh;
     display: flex;
     flex-direction: column;
 }
 
 .anotacoesColunas {
-    flex: 1;             /* ocupa o que sobrar dentro do card, depois do input */
-    min-height: 0;       /* sem isso o overflow abaixo não funciona */
+    flex: 1;
+    /* ocupa o que sobrar dentro do card, depois do input */
+    min-height: 0;
+    /* sem isso o overflow abaixo não funciona */
 }
 
 .colunaPendentes,
@@ -320,7 +387,8 @@ body {
     flex: 1;
     height: 100%;
     min-height: 0;
-    overflow-y: auto;    /* rola dentro da coluna se a lista crescer */
+    overflow-y: auto;
+    /* rola dentro da coluna se a lista crescer */
     background-color: #0f1225;
     border-radius: 8px;
     padding: 0.75rem;
@@ -340,13 +408,83 @@ body {
 }
 
 .colunaDireita .noticias {
-    flex: 2.5;    /* maior */
+    flex: 2.5;
+    /* maior */
 }
 
 .colunaDireita .previsao {
-    flex: 1.5;    /* médio */
+    flex: 1.5;
+    /* médio */
 }
 
 .colunaDireita .dica {
-    flex: 0.8;      /* menor */
+    flex: 0.8;
+    /* menor */
+}
+
+/* CARD CLIMA    */
+
+
+
+.climaInfo {
+    display: flex;
+}
+
+.climaEspec {
+    margin-top: 1vh;
+}
+
+.imgClima {
+    width: 7rem;
+}
+
+.climaExtra {
+    display: flex;
+}
+
+#localInfo {
+    margin-left: 0.6vw;
+    display: flex;
+    gap: 0.4rem;
+}
+
+.iconeClima {
+    color: #3b82f6;
+}
+
+#climaValor {
+    margin-left: 0.6vw;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#climaTipo {
+    margin-left: 0.6vw;
+}
+
+.cardExtra {
+    display: flex;
+    flex-direction: column;
+}
+
+.climaExtra {
+    display: flex;
+    margin-top: 5vh;
+    justify-content: space-between;
+}
+
+.extraTit {
+    color: #c4c7d6;
+    font-size: 0.8rem;
+    font-weight: bold;
+}
+
+#termicaValor {
+    display: flex;
+    gap: 1.2vh;
+}
+
+.extraValor {
+    margin-top: 0.5vh;
+    font-size: 1.1rem;
 }
