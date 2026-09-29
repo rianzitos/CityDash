@@ -370,7 +370,7 @@ body {
 .anotacoes {
     flex: 0 0 auto;
     /* impede que ele cresça e ocupe o resto do espaço */
-    height: 50vh;
+    height: 47.4vh;
     display: flex;
     flex-direction: column;
 }
@@ -460,6 +460,7 @@ body {
 
 #climaTipo {
     margin-left: 0.6vw;
+    font-size: 0.9rem;
 }
 
 .cardExtra {
@@ -469,13 +470,13 @@ body {
 
 .climaExtra {
     display: flex;
-    margin-top: 5vh;
+    margin-top: 3vh;
     justify-content: space-between;
 }
 
 .extraTit {
     color: #c4c7d6;
-    font-size: 0.8rem;
+    font-size: 0.7rem;
     font-weight: bold;
 }
 
@@ -486,5 +487,42 @@ body {
 
 .extraValor {
     margin-top: 0.5vh;
-    font-size: 1.1rem;
+    font-size: 1rem;
+}
+
+/* CARD HORÁRIO */
+
+#titHorario {
+    display: flex;
+    align-items: center;
+    gap: 0.9vw;
+    color: #65a0ff;
+    font-weight: bold;
+}
+
+.iconeRelogio {
+    font-size: 2.2rem;
+}
+
+#horario {
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+#descHorario {
+    margin-top: 1vh;
+    font-size: 0.9rem;
+}
+
+.horarioExtra {
+    margin-top: 3vh;
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+    color: #4985e7;
+}
+
+.iconeReload {
+    font-size: 1.5rem;
 }

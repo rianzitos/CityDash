@@ -3,7 +3,9 @@ const climaEl = document.querySelector('.cardClima');
 const resultadosEl = document.getElementById('resultados-cidade');
 const inputCidade = document.getElementById('input-cidade');
 const btnBuscar = document.querySelector('.butBuscar');
+const horarioEl = document.querySelector('.cardHorario'); // NOVO
 
+// ... (resto do topo do arquivo continua igual)
 btnBuscar.addEventListener('click', pesquisarCidade);
 
 inputCidade.addEventListener('keydown', (e) => {
@@ -135,6 +137,7 @@ async function carregarClimaPorCoordenadas(lat, lon, nomeLocal) {
     try {
         const dados = await buscarClima(lat, lon);
         renderClima(dados, nomeLocal);
+        iniciarRelogio(dados.timezone); // NOVO: liga o relógio com o timezone certo
         setStatus('');
     } catch (e) {
         setStatus(e.message, 'erro');
@@ -158,4 +161,57 @@ function usarLocalizacaoAtual() {
         },
         { enableHighAccuracy: true, timeout: 10000 }
     );
+}
+
+
+let horarioInterval = null;
+
+function renderEstruturaHorario() {
+    horarioEl.innerHTML = `
+        <div class="contentHorario">
+            <p id="titHorario">
+                <i class="iconeRelogio bi bi-clock"></i>Horário Atual
+            </p>
+            <div class="especHorario">
+                <p id="horario">--:--:--</p>
+                <p id="descHorario">Carregando...</p>
+            </div>
+            <div class="horarioExtra">
+                <i class="iconeReload bi bi-arrow-repeat"></i>
+                <span id="ultimaAtualizacao">Última atualização: --:--:--</span>
+            </div>
+        </div>
+    `;
+}
+
+function iniciarRelogio(timezone) {
+    if (horarioInterval) clearInterval(horarioInterval);
+
+    renderEstruturaHorario(); // NOVO: só cria a estrutura agora, quando já tem timezone
+
+    function atualizarRelogio() {
+        const agora = new Date();
+
+        const hora = new Intl.DateTimeFormat('pt-BR', {
+            timeZone: timezone,
+            hour: '2-digit', minute: '2-digit', second: '2-digit',
+            hour12: false
+        }).format(agora);
+
+        const dataFormatada = new Intl.DateTimeFormat('pt-BR', {
+            timeZone: timezone,
+            weekday: 'long', day: 'numeric', month: 'long', year: 'numeric'
+        }).format(agora);
+
+        document.getElementById('horario').textContent = hora;
+        document.getElementById('descHorario').textContent = capitalizarPrimeira(dataFormatada);
+        document.getElementById('ultimaAtualizacao').textContent = `Última atualização: ${hora}`;
+    }
+
+    atualizarRelogio();
+    horarioInterval = setInterval(atualizarRelogio, 1000);
+}
+
+function capitalizarPrimeira(texto) {
+    return texto.charAt(0).toUpperCase() + texto.slice(1);
 }
