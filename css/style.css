@@ -11,6 +11,33 @@ body {
     /* impede a barra de rolagem horizontal que apareceu */
 }
 
+::-webkit-scrollbar {
+    width: 10px;
+}
+
+::-webkit-scrollbar-track {
+    background: #151833;
+    border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #2a2e45;
+    border-radius: 5px;
+    transition: 0.5s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #494e6d;
+    transition: 0.5s ease;
+}
+
+/* Altera a seleção em todo o site */
+::selection {
+    background-color: #1c4fd1;
+    color: #ffffff;
+}
+
+
 body {
     font-family: Arial, sans-serif;
     background-color: #0b0d1a;
@@ -408,7 +435,7 @@ body {
 }
 
 .colunaDireita .noticias {
-    flex: 2.5;
+    flex: 3.5;
     /* maior */
 }
 
@@ -525,4 +552,708 @@ body {
 
 .iconeReload {
     font-size: 1.5rem;
+}
+
+/* CARD LOCALIZAÇÃO */
+
+.cardLocalizacao {
+    display: flex;
+    flex-direction: column;
+}
+
+#titLocalizacao {
+    display: flex;
+    align-items: center;
+    gap: 0.6vw;
+    color: #65a0ff;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.iconeLocal {
+    font-size: 1.5em;
+}
+
+
+.mapaContainer {
+    position: relative;
+    margin-top: 1vh;
+    flex: 1;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+#mapaMini {
+    width: 100%;
+    height: 100%;
+    min-height: 120px;
+}
+
+.labelMapa {
+    position: absolute;
+    bottom: 0.6rem;
+    left: 0.6rem;
+    background-color: rgba(15, 18, 37, 0.85);
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    z-index: 400;
+    /* fica acima dos tiles do Leaflet */
+}
+
+
+.butVerMapa {
+    display: flex;
+    width: 8vw;
+    align-items: center;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    padding: 0.6rem;
+    border-radius: 8px;
+    background-color: #1c2040;
+    color: #8e9deb;
+    font-size: 0.85rem;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.mapaIcone {
+    font-size: 1.2rem;
+}
+
+.butVerMapa:hover {
+    background-color: #24284f;
+}
+
+/*  CARD ANOTAÇÕES  */
+
+.titAnotacoes {
+    margin-bottom: 2vh;
+    display: flex;
+    gap: 1vw;
+    font-size: 1.3rem;
+    align-items: center;
+    font-weight: bold;
+}
+
+.iconeAnotacoes {
+    font-size: 1.6rem;
+}
+
+/* COLUNA PENDENTES */
+
+.colunaPendentes {
+    display: flex;
+    flex-direction: column;
+    background-color: #0d2955e7;
+    border: 2px solid #143568;
+
+}
+
+#titPendentes {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1.4vh;
+}
+
+.iconePendente {
+    width: 1.5rem;
+}
+
+.atividadePendente {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #1c2040;
+    border: 2px solid #0d4fb9;
+    padding: 0.85rem;
+    margin-top: 0.7vh;
+    border-radius: 10px;
+}
+
+.titulosPendente,
+.iconesPendente {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1rem;
+    gap: 0.9vw;
+}
+
+.checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.checkbox:checked {
+    transition: 0.2s ease;
+}
+
+.pendenteBox {
+    border: 2px solid #c6cef8;
+}
+
+
+
+.iconeMover,
+.iconeLixeira {
+    font-size: 1.4rem;
+    color: #d8e5fb;
+    transition: 0.3s ease;
+}
+
+.iconeLixeira {
+    cursor: pointer;
+}
+
+.iconeMover {
+    cursor: grab;
+}
+
+/*  COLUNA CONCLUÍDOS */
+
+.colunaConcluidas {
+    display: flex;
+    flex-direction: column;
+    background-color: #143c1abe;
+    border: 2px solid #329b42;
+}
+
+#titConcluidas {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    align-items: center;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-bottom: 1.4vh;
+}
+
+.iconeConcluidas {
+    width: 1.5rem;
+}
+
+.atividadeConcluida {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    background-color: #0a270c96;
+    border: none;
+    padding: 0.85rem;
+    margin-top: 0.7vh;
+    border-radius: 10px;
+}
+
+.titulosConcluida,
+.iconesConcluido {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    font-size: 1rem;
+    gap: 0.9vw;
+}
+
+.checkbox-container {
+    position: relative;
+    display: inline-block;
+}
+
+.checkbox {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.concluidoBox {
+    border: 2px solid #b6fcbe;
+}
+
+.checkbox:checked {
+    background-color: #5ba361;
+    border: none;
+}
+
+.checkmark {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    color: white;
+    font-size: 25px;
+    font-weight: bold;
+
+    pointer-events: none;
+    opacity: 0;
+    transition: 0.2s ease;
+}
+
+.checkbox:checked+.checkmark {
+    opacity: 1;
+}
+
+.iconeLixeira:hover {
+    color: #fd5353;
+    transition: 0.3s ease;
+}
+
+/* DRAG AND DROP — ANOTAÇÕES */
+
+.arrastando {
+    opacity: 0.4;
+}
+
+.colunaPendentes.arrastandoSobre,
+.colunaConcluidas.arrastandoSobre {
+    outline: 2px dashed #8e9deb;
+    outline-offset: -4px;
+}
+
+/* CARD NOTÍCIAS */
+
+.noticiaHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#titNoticias {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.iconeNoticias {
+    color: #65a0ff;
+}
+
+.verMais {
+    color: #65a0ff;
+    font-size: 0.85rem;
+    text-decoration: none;
+}
+
+.verMais:hover {
+    text-decoration: underline;
+}
+
+.imgNoticia {
+    width: 100%;
+    height: 9rem;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-top: 0.8rem;
+    background-color: #0f1225;
+}
+
+.tagCategoria {
+    display: inline-block;
+    background-color: #1c4fd1;
+    color: #fff;
+    font-size: 0.7rem;
+    font-weight: bold;
+    padding: 0.25rem 0.6rem;
+    border-radius: 6px;
+    margin-top: 0.8rem;
+}
+
+.tituloNoticia {
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    line-height: 1.3;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.descNoticia {
+    font-size: 0.8rem;
+    color: #8b8fa3;
+    margin-top: 0.4rem;
+    line-height: 1.4;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.rodapeNoticia {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 0.8rem;
+    font-size: 0.75rem;
+    color: #8b8fa3;
+}
+
+.rodapeNoticia a {
+    color: #65a0ff;
+    font-size: 1rem;
+    text-decoration: none;
+}
+
+/*  CARD PREVISÃO DO TEMPO */
+
+/* CARD PREVISÃO */
+
+#titPrevisao {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-weight: bold;
+    font-size: 0.95rem;
+}
+
+.iconePrevisaoTit {
+    color: #65a0ff;
+}
+
+.listaPrevisao {
+    display: flex;
+    margin-top: 0.8rem;
+    border: 1px solid #2a2e45;
+    border-radius: 10px;
+    padding: 0.8rem 0;
+}
+
+.diaPrevisao {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.35rem;
+    position: relative;
+}
+
+.diaPrevisao:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    right: 0;
+    top: 10%;
+    bottom: 10%;
+    width: 1px;
+    background-color: #2a2e45;
+}
+
+.labelDia {
+    font-size: 0.8rem;
+    font-weight: bold;
+    color: #c4c7d6;
+}
+
+.iconePrevisaoClima {
+    font-size: 1.4rem;
+    margin: 0.2rem 0;
+}
+
+.icone-sol {
+    color: #f5c94b;
+}
+
+.icone-chuva {
+    color: #3b82f6;
+}
+
+.icone-nublado,
+.icone-parcial {
+    color: #c4c7d6;
+}
+
+.icone-neve {
+    color: #9ad7f5;
+}
+
+.icone-tempestade {
+    color: #8e9deb;
+}
+
+.tempMax {
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.tempMin {
+    font-size: 0.75rem;
+    color: #8b8fa3;
+}
+
+/*  CARD FRASE DO DIA */
+
+.dica {
+    display: flex;
+    flex-direction: column;
+}
+
+.titFrase {
+    display: flex;
+    flex-direction: row;
+    gap: 1vw;
+    align-items: center;
+    font-weight: bold;
+}
+
+.iconeLampada {
+    color: #ddca37;
+    font-size: 1.3rem;
+}
+
+.frase {
+    display: flex;
+    flex-direction: row;
+    margin-top: 1vh;
+    font-size: 0.90rem;
+}
+
+/*  ASIDE */
+
+.imgMiniClima {
+    width: 2.3rem;
+}
+
+.containerMiniClima {
+    display: flex;
+    flex-direction: row;
+    gap: 0.6vw;
+    align-items: center;
+    font-weight: bold;
+}
+
+.iconeMiniLocal {
+    font-size: 1.3rem;
+    color: #c2c5c6;
+}
+
+.miniLocal {
+    font-size: 0.90rem;
+}
+
+.miniDesc {
+    font-weight: bold;
+}
+
+/* ============================================= */
+/* ===== RESPONSIVIDADE ===== */
+/* ============================================= */
+
+/* ----- TABLETS (até 992px) ----- */
+@media (max-width: 992px) {
+
+    .conteudo {
+        flex-direction: column;
+    }
+
+    .colunaPrincipal,
+    .colunaDireita {
+        flex: none;
+        width: 100%;
+    }
+
+    .cardsInfo {
+        flex-wrap: wrap;
+    }
+
+    .cardsInfo .card {
+        flex: 1 1 45%;
+        height: auto;
+        min-height: 220px;
+    }
+
+    .anotacoes {
+        height: auto;
+        min-height: 400px;
+    }
+
+    .colunaDireita .noticias,
+    .colunaDireita .previsao,
+    .colunaDireita .dica {
+        flex: none;
+    }
+
+    .noticias,
+    .dica {
+        height: auto;
+    }
+}
+
+/* ----- CELULARES (até 768px) ----- */
+@media (max-width: 768px) {
+
+    .app {
+        flex-direction: column;
+    }
+
+    /* sidebar vira barra horizontal no topo, em vez de coluna fixa */
+    .barraLateral {
+        width: 100%;
+        min-width: 0;
+        height: auto;
+        flex-direction: row;
+        flex-wrap: wrap;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.8rem 1rem;
+        gap: 0.8rem;
+    }
+
+    .containerLogo {
+        flex-direction: row;
+        padding: 0;
+        gap: 0.6rem;
+    }
+
+    .logo {
+        width: 7rem;
+    }
+
+    #mensagemLogo {
+        display: none; /* texto de apoio some pra economizar espaço */
+    }
+
+    .menu {
+        width: auto;
+    }
+
+    .menu ul {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+        padding: 0;
+    }
+
+    .menu .itemMenu {
+        margin-bottom: 0;
+    }
+
+    .menu .itemMenu a span {
+        display: none; /* mantém só o ícone, economiza espaço horizontal */
+    }
+
+    .menu .itemMenu a {
+        padding: 0.6rem;
+    }
+
+    .miniClima {
+        display: none; /* card de clima mini não cabe bem numa barra horizontal */
+    }
+
+    /* área principal passa a crescer naturalmente, sem travar em 100vh */
+    .areaPrincipal {
+        height: auto;
+        overflow-y: visible;
+    }
+
+    .cabecalho {
+        flex-wrap: wrap;
+        padding: 1rem;
+    }
+
+    .containerPesquisa {
+        order: 1;
+        flex-wrap: wrap;
+        max-width: 100%;
+    }
+
+    .butLocalizacao {
+        flex: 1 1 100%;
+        justify-content: center;
+    }
+
+    .resultadosCidade {
+        max-width: 100%;
+    }
+
+    .botoes {
+        order: 2;
+        margin-left: auto;
+    }
+
+    #status {
+        order: 3;
+        flex: 1 1 100%;
+    }
+
+    .conteudo {
+        padding: 0 1rem 1rem;
+    }
+
+    .cardsInfo {
+        flex-direction: column;
+    }
+
+    .cardsInfo .card {
+        flex: none;
+        width: 100%;
+    }
+
+    #climaValor,
+    #horario {
+        font-size: 2.2rem;
+    }
+
+    .anotacoesColunas {
+        flex-direction: column;
+    }
+
+    .colunaPendentes,
+    .colunaConcluidas {
+        height: auto;
+        max-height: 300px;
+    }
+
+    /* previsão do tempo: scroll horizontal em vez de espremer os 5 dias */
+    .listaPrevisao {
+        overflow-x: auto;
+        justify-content: flex-start;
+    }
+
+    .diaPrevisao {
+        flex: 0 0 auto;
+        width: 4.5rem;
+    }
+}
+
+/* ----- CELULARES PEQUENOS (até 480px) ----- */
+@media (max-width: 480px) {
+
+    .banner h1 {
+        font-size: 1.3rem;
+    }
+
+    #climaValor,
+    #horario {
+        font-size: 1.8rem;
+    }
+
+    .climaInfo {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .climaExtra {
+        flex-wrap: wrap;
+        gap: 0.8rem;
+    }
+
+    .butVerMapa {
+        width: 100%;
+    }
 }

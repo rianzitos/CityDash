@@ -8,6 +8,8 @@
 
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+    <!-- NOVO: Leaflet -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.css">
     <link rel="shortcut icon" href="assets/icons/favicon.svg" type="image/x-icon">
 </head>
 
@@ -33,9 +35,12 @@
 
         <!-- mini card fixo embaixo da sidebar, como no print -->
         <div class="miniClima">
-            <span class="miniLocal"><i class="bi bi-geo-alt-fill"></i> </span>
+            <div class="containerMiniClima">
+                <i class="iconeMiniLocal bi bi-geo-alt-fill"></i>
+                <span class="miniLocal"> </span>
+            </div>
             <div class="miniInfo">
-                <i class="bi bi-cloud-sun-fill"></i>
+                <img class="imgMiniClima" src="assets/img/clima.svg" alt="">
                 <span class="miniTemp"></span>
             </div>
             <span class="miniDesc"></span>
@@ -73,7 +78,7 @@
             <main class="colunaPrincipal">
 
                 <section class="banner">
-                    <h1>Boa tarde, Rian!</h1>
+                    <h1>Boa tarde, Usuário!</h1>
                     <p>Aqui estão as informações da sua cidade.</p>
                 </section>
 
@@ -83,17 +88,29 @@
 
                     <div class="card cardHorario">
                     </div>
-                    <div class="card cardLocalizacao">...</div>
+                    <div class="card cardLocalizacao"></div>
                 </section>
 
                 <section class="card anotacoes">
+                    <p class="titAnotacoes"><i class="iconeAnotacoes bi bi-card-text"></i> Minhas anotações</p>
                     <div class="anotacoesInput">
-                        <input type="text" placeholder="Digite uma anotação...">
-                        <button>+ Adicionar</button>
+                        <input id="inputAnotacao" type="text" placeholder="Digite uma anotação...">
+                        <button id="butAnotacao">+ Adicionar</button>
                     </div>
                     <div class="anotacoesColunas">
-                        <div class="colunaPendentes">...</div>
-                        <div class="colunaConcluidas">...</div>
+                        <div class="colunaPendentes">
+                            <p id="titPendentes"><img class="iconePendente" src="assets/img/pendente.png"
+                                    alt="Ícone de Pendente"> Pendentes
+                            </p>
+
+                        </div>
+                        <div class="colunaConcluidas">
+                            <p id="titConcluidas">
+                                <img class="iconeConcluidas" src="assets/img/correto.png" alt="Ícone de Concluido">
+                                Concluídas
+                            </p>
+
+                        </div>
                     </div>
                 </section>
 
@@ -102,14 +119,19 @@
             </main>
 
             <aside class="colunaDireita">
-                <section class="card noticias">...</section>
-                <section class="card previsao">...</section>
-                <section class="card dica">...</section>
+                <section class="card noticias"></section>
+                <section class="card previsao"></section>
+                <section class="card dica">
+                    <p class="titFrase"><i class="iconeLampada bi bi-lightbulb"></i> Frase do dia</p>
+                    <p class="frase">
+                    </p>
+                </section>
             </aside>
 
         </div>
     </div>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/leaflet.min.js"></script>
     <script src="js/script.js"></script>
 </body>
 
