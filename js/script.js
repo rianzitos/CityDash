@@ -1,3 +1,5 @@
+// Chamando as variáveis do projeto
+
 const statusEl = document.getElementById('status');
 const climaEl = document.querySelector('.cardClima');
 const resultadosEl = document.getElementById('resultados-cidade');
@@ -6,12 +8,13 @@ const btnBuscar = document.querySelector('.butBuscar');
 const horarioEl = document.querySelector('.cardHorario');
 const inputAnotacao = document.querySelector('#inputAnotacao');
 const butAnotacao = document.querySelector('#butAnotacao');
-const colunaPendentesEl = document.querySelector('.colunaPendentes'); 
+const colunaPendentesEl = document.querySelector('.colunaPendentes');
 const colunaConcluidasEl = document.querySelector('.colunaConcluidas');
 const miniLocal = document.querySelector('.miniLocal')
 const miniTemp = document.querySelector('.miniTemp')
 const miniDesc = document.querySelector('.miniDesc')
 
+// Os três eventos abaixo correspondem ao mecanismo de pesquisa da aplicação, para encontrar cidades e locais do mundo
 btnBuscar.addEventListener('click', pesquisarCidade);
 
 inputCidade.addEventListener('keydown', (e) => {
@@ -35,7 +38,10 @@ const WEATHER_CODES = {
     95: 'Tempestade', 96: 'Tempestade com granizo leve', 99: 'Tempestade com granizo forte'
 };
 
+
+// A função abaixo mostra como a aplicação busca as cidades e locais
 async function pesquisarCidade() {
+    // Remove os espaços do texto digitado
     const nome = inputCidade.value.trim();
     if (!nome) return;
 
@@ -66,6 +72,7 @@ async function pesquisarCidade() {
     }
 }
 
+// Função para selecionar a cidade
 function selecionarCidade(i) {
     const r = window._resultadosBusca[i];
     inputCidade.value = `${r.name}, ${r.country}`;
@@ -73,21 +80,25 @@ function selecionarCidade(i) {
     carregarClimaPorCoordenadas(r.latitude, r.longitude, `${r.name}, ${r.country}`);
 }
 
+// Função para mostrar as cidades no dropdown
 function mostrarDropdown(html) {
     resultadosEl.innerHTML = html;
     resultadosEl.classList.add('ativo');
 }
 
+// Função para esconder o dropdown das cidades
 function esconderDropdown() {
     resultadosEl.classList.remove('ativo');
 }
 
+// Função para os status (se está carregando ou se deu erro)
 function setStatus(msg, tipo) {
     if (!msg) { statusEl.innerHTML = ''; return; }
     const classe = tipo === 'erro' ? 'erro' : 'loading';
     statusEl.innerHTML = `<div class="${classe}">${msg}</div>`;
 }
 
+// Função para buscar o clima, pegando da API do OpenMeteo
 async function buscarClima(lat, lon) {
     const url = `https://api.open-meteo.com/v1/forecast?latitude=${lat}&longitude=${lon}&current=temperature_2m,apparent_temperature,weather_code,relative_humidity_2m,wind_speed_10m&daily=weather_code,temperature_2m_max,temperature_2m_min&forecast_days=5&timezone=auto`;
     const res = await fetch(url);
@@ -95,8 +106,7 @@ async function buscarClima(lat, lon) {
     return res.json();
 }
 
-
-
+// Função para renderizar o clima
 function renderClima(dados, nomeLocal) {
     const c = dados.current;
     const desc = WEATHER_CODES[c.weather_code] ?? `Código ${c.weather_code}`;
@@ -104,9 +114,12 @@ function renderClima(dados, nomeLocal) {
         dateStyle: 'short', timeStyle: 'short'
     });
 
+    // As três linhas abaixo definem os valores de local, clima e descrição do clima da cidade selecionada/local do usuário nas divs respectivas.
     miniLocal.innerHTML = ` ${nomeLocal} `;
     miniTemp.innerHTML = `${c.temperature_2m}°C`;
     miniDesc.innerHTML = `${desc}`;
+
+    // Adiciona o conteúdo do clima do local escolhido pelo usuário no card do clima
     climaEl.innerHTML = `
        <div class="climaInfo">
                             <img class="imgClima" src="assets/img/clima.svg" alt="Icone de clima com nuvem e sol">
@@ -141,6 +154,7 @@ function renderClima(dados, nomeLocal) {
     `;
 }
 
+// Carrega o clima do local pelas coordenadas
 async function carregarClimaPorCoordenadas(lat, lon, nomeLocal) {
     setStatus('Carregando clima...');
     climaEl.innerHTML = '';
@@ -156,6 +170,7 @@ async function carregarClimaPorCoordenadas(lat, lon, nomeLocal) {
     }
 }
 
+// Função para buscar a latitude e longitude em tempo real do usuário utilizando o GeoLocation
 function usarLocalizacaoAtual() {
     resultadosEl.innerHTML = '';
     if (!navigator.geolocation) {
@@ -176,8 +191,10 @@ function usarLocalizacaoAtual() {
 }
 
 
+// Define o intervale do usuário como vazio
 let horarioInterval = null;
 
+// Renderiza a estrutura das horas no card de horário
 function renderEstruturaHorario() {
     horarioEl.innerHTML = `
         <div class="contentHorario">
@@ -196,6 +213,7 @@ function renderEstruturaHorario() {
     `;
 }
 
+// Função para iniciar o relógio
 function iniciarRelogio(timezone) {
     if (horarioInterval) clearInterval(horarioInterval);
 
@@ -233,6 +251,7 @@ const localizacaoEl = document.querySelector('.cardLocalizacao');
 let mapaInstancia = null;
 let marcadorInstancia = null;
 
+// Função para renderizar a estrutura do conteúdo do card de localização
 function renderEstruturaLocalizacao() {
     localizacaoEl.innerHTML = `
         <p id="titLocalizacao"><i class="iconeLocal bi bi-geo-alt-fill"></i> Sua localização</p>
@@ -245,6 +264,9 @@ function renderEstruturaLocalizacao() {
         </a>
     `;
 }
+
+// Função para renderizar o mapa, com a latitude, longitude e nome do local.
+// Utiliza a API do OpenStreet Map 
 
 function renderMapa(lat, lon, nomeLocal) {
     if (!mapaInstancia) {
@@ -262,6 +284,7 @@ function renderMapa(lat, lon, nomeLocal) {
         }).addTo(mapaInstancia);
 
         const icone = L.icon({
+            // Esses dois links representam os ícones do mapa do OpenStreet Map
             iconUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-icon.png',
             shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/1.9.4/images/marker-shadow.png',
             iconSize: [25, 41],
@@ -281,6 +304,7 @@ function renderMapa(lat, lon, nomeLocal) {
 
 
 /* ===== ANOTAÇÕES — ADICIONAR, ARRASTAR E DELETAR ===== */
+//  Utiliza a API nativa do JavaScript do Drag and Drop
 
 butAnotacao.addEventListener('click', adicionarAnotacao);
 
@@ -301,6 +325,7 @@ function adicionarAnotacao() {
     inputAnotacao.value = '';
 }
 
+// Função para criar a atividade pendente no seu respectivo card, e então levando para o card de concluidas
 function criarItemAnotacaoHTML(id, texto, tipo) {
     if (tipo === 'pendente') {
         return `
@@ -319,6 +344,7 @@ function criarItemAnotacaoHTML(id, texto, tipo) {
             </div>
         `;
     }
+
 
     return `
         <div id="${id}" class="atividadeConcluida" draggable="true">
@@ -390,14 +416,16 @@ document.querySelectorAll('.atividadePendente, .atividadeConcluida').forEach((it
 });
 
 
-// API DE NOTÍCIAS
+// API de notícias utilizando a Thenewsapi
 
 const noticiasEl = document.querySelector('.noticias');
 
-const THENEWSAPI_TOKEN = '4ZICHV6xbR1G6THdhwfK5ytfMRFAbvh705v12Zik'; 
+// Chave da API
+const THENEWSAPI_TOKEN = '4ZICHV6xbR1G6THdhwfK5ytfMRFAbvh705v12Zik';
 
 async function carregarNoticia() {
     try {
+        // API da TheNewsAPI
         const url = `https://api.thenewsapi.com/v1/news/top?api_token=${THENEWSAPI_TOKEN}&locale=br&language=pt&limit=1`;
         const res = await fetch(url);
         const data = await res.json();
@@ -414,6 +442,7 @@ async function carregarNoticia() {
     }
 }
 
+// Função para renderizar a notícia, de acordo com a língua definida na url (&locale=br&language=pt&limit=1)
 function renderNoticia(artigo) {
     const dataPub = new Date(artigo.published_at);
     const hoje = new Date();
@@ -447,7 +476,7 @@ function renderNoticia(artigo) {
 
 carregarNoticia();
 
-//  PREVISÃO DO TEMPO
+//  Card de previsão do tempo (ainda utilizando a API DO OpenMeteo)
 
 const previsaoEl = document.querySelector('.previsao');
 
@@ -493,7 +522,7 @@ function renderPrevisao(diario) {
     `;
 }
 
-//  API DE FRASES MOTIVACIONAIS
+//  API DE FRASES MOTIVACIONAIS (Utiliza a API Ninjas)
 
 const frase = document.querySelector('.frase');
 
@@ -502,24 +531,23 @@ fetch('https://api.api-ninjas.com/v2/quoteoftheday', {
         'X-Api-Key': 'XFeKkmohnKAYsZ42udhzik9f7f2LcNrS4rAbdtXl'
     }
 })
-.then(response => {
-    if (!response.ok) {
-        throw new Error(`Erro: ${response.status}`);
-    }
+    .then(response => {
+        if (!response.ok) {
+            throw new Error(`Erro: ${response.status}`);
+        }
 
-    return response.json();
-})
-.then(data => {
-    console.log(data);
+        return response.json();
+    })
+    .then(data => {
+        console.log(data);
 
-    frase.innerHTML = `⭐${data[0].quote}⭐` ;
-})
-.catch(error => {
-    console.error('Erro na requisição:', error);
-});
+        frase.innerHTML = `⭐${data[0].quote}⭐`;
+    })
+    .catch(error => {
+        console.error('Erro na requisição:', error);
+    });
 
-// ESSA PARTE DE BAIXO AQUI É PARA O MAPA N QUEBRAR EM CELULARES
-
+// ESSA PARTE DE BAIXO AQUI É PARA O MAPA NÃO QUEBRAR EM CELULARES
 let resizeTimeout;
 window.addEventListener('resize', () => {
     clearTimeout(resizeTimeout);

@@ -604,7 +604,7 @@ body {
 
 .butVerMapa {
     display: flex;
-    width: 8vw;
+    width: 9vw;
     align-items: center;
     gap: 0.8rem;
     margin-top: 0.8rem;
@@ -1120,7 +1120,7 @@ body {
     }
 
     .logo {
-        width: 7rem;
+        width: 12rem;
     }
 
     #mensagemLogo {
